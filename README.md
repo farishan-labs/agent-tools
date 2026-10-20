@@ -84,17 +84,19 @@ In OpenCode, just ask:
 ```
 plugins/     the OpenCode plugin entries -- thin wrappers, one file per tool
 src/         the actual logic, with no dependency on OpenCode
+cli/         reserved for standalone command-line front-ends
 test/        bun test
 scripts/     install.sh, plus preview scripts for running the core directly
 ```
 
 The split matters: `src/` has no OpenCode imports, so the same code can back
-a standalone CLI later without being rewritten.
+a standalone CLI later without being rewritten. See `cli/README.md`.
 
 ## Development
 
 ```sh
-bun test           # 24 tests, no network
+bun install       # only needed for tests and typecheck
+bun test          # 31 tests, no network
 bun run typecheck
 bun scripts/sweep-preview.ts ~/dev/personal
 bun scripts/doctor-preview.ts --offline
@@ -102,6 +104,10 @@ bun scripts/doctor-preview.ts --offline
 
 The preview scripts run the core directly, without OpenCode in the loop,
 which makes them the fastest way to check a change.
+
+Running the plugins does not need `bun install` -- OpenCode supplies
+`@opencode/plugin` itself, so a plain clone works as soon as it is linked
+into the plugin directory.
 
 ## Also included
 
