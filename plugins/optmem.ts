@@ -10,7 +10,7 @@ import { Plugin } from "@opencode/plugin"
  * `wake` pages itself, so truncating here would break the paging contract.
  */
 
-const MEMO = `${process.env.HOME}/.optmem/memo`
+const MEMO = `${process.env.HOME}/.local/bin/memory`
 const ACTION = "optmem"
 const TIMEOUT = 30_000
 
@@ -18,7 +18,7 @@ const TIMEOUT = 30_000
 // than the CLI's. Keep in sync with OptMem's ENTRY_CHARS default.
 const ENTRY_CHARS = 280
 
-type Operation = "wake" | "note" | "recall" | "zoom" | "nap"
+type Operation = "wake" | "note" | "recall" | "zoom" | "nap" | "forget"
 
 interface Input {
   operation: Operation
@@ -27,6 +27,7 @@ interface Input {
   text?: string
   pattern?: string
   block?: string
+  id?: string
 }
 
 /** A rejected call: reported back as content so the agent can correct it. */
@@ -118,6 +119,14 @@ function toArgv(input: Input): string[] {
       return ["nap", blockId(input.block), memory("text", input.text)]
     }
 
+    case "forget": {
+      requireNoExtras(input, ["id"])
+      if (typeof input.id !== "string" || !input.id.trim()) {
+        fail("`id` must be a non-empty memory id.")
+      }
+      return ["forget", input.id.trim()]
+    }
+
     default:
       return fail(`Unknown operation ${JSON.stringify(input.operation)}.`)
   }
@@ -143,7 +152,7 @@ export default Plugin.define({
           properties: {
             operation: {
               type: "string",
-              enum: ["wake", "note", "recall", "zoom", "nap"],
+              enum: ["wake", "note", "recall", "zoom", "nap", "forget"],
               description: "Which OptMem operation to run.",
             },
             part: {
@@ -167,6 +176,10 @@ export default Plugin.define({
             block: {
               type: "string",
               description: 'zoom and nap: a block id exactly as wake prints it, like "16-31".',
+            },
+            id: {
+              type: "string",
+              description: "forget only: memory id to tombstone.",
             },
           },
           required: ["operation"],
