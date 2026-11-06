@@ -1,5 +1,7 @@
 # agent-tools
 
+![agent-tools cover](assets/cover.svg)
+
 OpenCode plugins for the things you would otherwise do by hand every session:
 survey every repo at once, and check that the machine is wired up correctly.
 

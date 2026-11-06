@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0d1117"/>
+  <rect x="60" y="60" width="1080" height="510" rx="16" fill="#161b22" stroke="#30363d"/>
+  <text x="100" y="150" font-family="monospace" font-size="56" font-weight="700" fill="#58a6ff">agent-tools</text>
+  <text x="100" y="200" font-family="sans-serif" font-size="26" fill="#8b949e">OpenCode plugins: sweep + doctor</text>
+  <text x="100" y="280" font-family="monospace" font-size="20" fill="#c9d1d9">sweep  → survey every git repo: branch, dirty, unpushed, next hint</text>
+  <text x="100" y="320" font-family="monospace" font-size="20" fill="#3fb950">✓ 12 repos surveyed, 3 dirty, 1 unpushed</text>
+  <text x="100" y="380" font-family="monospace" font-size="20" fill="#c9d1d9">doctor → gh auth, SSH hosts, MCP servers, env vars, index drift</text>
+  <text x="100" y="420" font-family="monospace" font-size="20" fill="#3fb950">✓ all checks green</text>
+  <text x="100" y="490" font-family="sans-serif" font-size="20" fill="#8b949e">Read-only. One call. No network beyond what you already use.</text>
+</svg>
