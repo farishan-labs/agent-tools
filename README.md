@@ -85,23 +85,25 @@ In OpenCode, just ask:
 
 ```
 plugins/     the OpenCode plugin entries -- thin wrappers, one file per tool
-src/         the actual logic, with no dependency on OpenCode
-cli/         reserved for standalone command-line front-ends
-test/        bun test
-scripts/     install.sh, plus preview scripts for running the core directly
+test/        bun test (plugin wiring only)
+scripts/     install.sh
 ```
 
-The split matters: `src/` has no OpenCode imports, so the same code can back
-a standalone CLI later without being rewritten. See `cli/README.md`.
+The core logic (sweep + doctor) now lives in the standalone `sweep` repo
+(https://github.com/farishan/sweep) and is consumed via the `sweep` dependency.
+Preview scripts and CLI front-ends moved there too.
 
 ## Development
 
 ```sh
-bun install       # only needed for tests and typecheck
-bun test          # 31 tests, no network
+bun install       # pulls the sweep dependency
+bun test          # plugin wiring tests
 bun run typecheck
-bun scripts/sweep-preview.ts ~/dev/personal
-bun scripts/doctor-preview.ts --offline
+```
+
+Preview runs live in the sweep repo:
+```sh
+cd ../sweep && bun scripts/sweep-preview.ts ~/dev/personal
 ```
 
 The preview scripts run the core directly, without OpenCode in the loop,

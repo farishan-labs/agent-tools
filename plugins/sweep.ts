@@ -2,8 +2,8 @@ import { Plugin } from "@opencode/plugin"
 import { existsSync } from "node:fs"
 import { homedir } from "node:os"
 import { join } from "node:path"
-import { renderTable } from "../src/format.ts"
-import { sweep } from "../src/sweep.ts"
+import { renderTable } from "sweep/format"
+import { sweep } from "sweep"
 
 /**
  * Sweep: one call that surveys every git repo under a root.

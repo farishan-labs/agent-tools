@@ -5,11 +5,14 @@
   "license": "MIT",
   "type": "module",
   "keywords": ["opencode", "opencode-plugin", "git", "developer-tools"],
-  "files": ["plugins", "src", "README.md", "LICENSE"],
+  "files": ["plugins", "README.md", "LICENSE"],
   "scripts": {
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "install:opencode": "./scripts/install.sh"
+  },
+  "dependencies": {
+    "sweep": "git+ssh://git@github.com/farishan/sweep.git"
   },
   "devDependencies": {
     "@opencode/plugin": "^2.0.30",

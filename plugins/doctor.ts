@@ -1,5 +1,5 @@
 import { Plugin } from "@opencode/plugin"
-import { doctor, type CheckResult } from "../src/doctor.ts"
+import { doctor, type CheckResult } from "sweep/doctor"
 
 /**
  * Doctor: check that this machine is wired up correctly.

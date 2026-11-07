@@ -4,6 +4,9 @@
   "workspaces": {
     "": {
       "name": "agent-tools",
+      "dependencies": {
+        "sweep": "git+ssh://git@github.com/farishan/sweep.git",
+      },
       "devDependencies": {
         "@opencode/plugin": "^2.0.30",
         "@types/bun": "latest",
@@ -467,6 +470,8 @@
     "strip-ansi": ["strip-ansi@7.2.0", "", { "dependencies": { "ansi-regex": "^6.2.2" } }, "sha512-yDPMNjp4WyfYBkHnjIRLfca1i6KMyGCtsVgoKe/z1+6vukgaENdgGBZt+ZmKPc4gavvEZ5OgHfHdrazhgNyG7w=="],
 
     "strip-ansi-cjs": ["strip-ansi@6.0.1", "", { "dependencies": { "ansi-regex": "^5.0.1" } }, "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A=="],
+
+    "sweep": ["sweep@git+ssh://git@github.com/farishan/sweep.git#784516c92d51e281de1acc4ed35909420a370e28", { "bin": { "sweep": "./cli/sweep.ts", "doctor": "./cli/doctor.ts" } }, "784516c92d51e281de1acc4ed35909420a370e28"],
 
     "tar": ["tar@7.5.22", "", { "dependencies": { "@isaacs/fs-minipass": "^4.0.0", "chownr": "^3.0.0", "minipass": "^7.1.2", "minizlib": "^3.1.0", "yallist": "^5.0.0" } }, "sha512-MFO/QzvtAOmJbkhOaCTvbGcFN9L9b+JunIsDwaKljSOdcLMea3NJ1k9Usz/rjdfSXTq4dfzfeS7W4p4YOAAHeA=="],
 
