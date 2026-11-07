@@ -17,10 +17,17 @@ PLUGIN_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/opencode/plugins"
 
 ALL_PLUGINS=(sweep doctor sh optmem)
 
-if [[ ! -d "$REPO_DIR/plugins" ]]; then
-  echo "error: $REPO_DIR/plugins not found" >&2
-  exit 1
-fi
+# sweep and doctor now live in the sweep dependency; sh and optmem stay here.
+find_plugin_source() {
+  local name="$1"
+  for base in "$REPO_DIR/plugins" "$REPO_DIR/node_modules/sweep/plugins"; do
+    if [[ -f "$base/$name.ts" ]]; then
+      echo "$base/$name.ts"
+      return 0
+    fi
+  done
+  return 1
+}
 
 mkdir -p "$PLUGIN_DIR"
 
@@ -43,11 +50,11 @@ else
 fi
 
 for plugin in "${PLUGINS[@]}"; do
-  source_file="$REPO_DIR/plugins/$plugin.ts"
+  source_file="$(find_plugin_source "$plugin" || true)"
   target="$PLUGIN_DIR/$plugin.ts"
 
-  if [[ ! -f "$source_file" ]]; then
-    echo "skip  $plugin.ts (not in this repo)"
+  if [[ -z "$source_file" || ! -f "$source_file" ]]; then
+    echo "skip  $plugin.ts (not found)"
     continue
   fi
 
