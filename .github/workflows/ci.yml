@@ -1,14 +1,26 @@
+# NOTE: CI runs only on PR + push to main to avoid noisy runs.
+# Email-on-failure: GitHub notifies watchers by default; disable in GitHub Settings -> Notifications -> Actions,
+# or repo Settings -> Notifications. Non-blocking steps use continue-on-error.
 name: CI
+# NOTE: Runs only on PR + push to main to avoid noisy runs.
+# Email-on-failure: GitHub notifies watchers by default. To disable, go to
+# GitHub Settings -> Notifications -> Actions, or repo Settings -> Notifications.
+# Non-blocking steps use continue-on-error so a failure there does not fail CI.
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   pull_request:
-    branches: [main, master]
+    branches: [main]
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-      - run: bun install --frozen-lockfile 2>/dev/null || bun install
-      - run: bun test 2>/dev/null || echo "no tests"
+      - run: bun install
+      - name: Typecheck
+        run: bun run typecheck
+        continue-on-error: true
+      - name: Tests
+        run: bun test
