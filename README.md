@@ -1,5 +1,8 @@
 # agent-tools
 
+![License](https://img.shields.io/github/license/farishan-labs/agent-tools) ![Stars](https://img.shields.io/github/stars/farishan-labs/agent-tools)
+
+
 ![agent-tools cover](assets/cover.svg)
 
 OpenCode plugins for the things you would otherwise do by hand every session:
@@ -122,3 +125,9 @@ set. They are installed by the same script.
 ## License
 
 MIT
+
+## Installation
+
+```bash
+npm install agent-tools
+```

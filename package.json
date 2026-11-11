@@ -4,8 +4,17 @@
   "description": "OpenCode plugins for surveying git repos and checking machine health",
   "license": "MIT",
   "type": "module",
-  "keywords": ["opencode", "opencode-plugin", "git", "developer-tools"],
-  "files": ["plugins", "README.md", "LICENSE"],
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "git",
+    "developer-tools"
+  ],
+  "files": [
+    "plugins",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "bun test",
     "typecheck": "tsc --noEmit",
@@ -21,5 +30,9 @@
   },
   "engines": {
     "bun": ">=1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farishan-labs/agent-tools.git"
   }
 }
