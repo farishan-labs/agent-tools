@@ -21,7 +21,8 @@
     "install:opencode": "./scripts/install.sh"
   },
   "dependencies": {
-    "sweep": "git+ssh://git@github.com/farishan/sweep.git"
+    "sweep": "git+ssh://git@github.com/farishan/sweep.git",
+    "chrome-remote-interface": "^0.34.0"
   },
   "devDependencies": {
     "@opencode/plugin": "^2.0.30",
