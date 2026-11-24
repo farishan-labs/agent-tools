@@ -1,4 +1,5 @@
 import { Plugin } from "@opencode/plugin"
+import { homedir } from "node:os"
 
 /**
  * OptMem: an append-only memory that outlives every session, compaction, model
@@ -10,7 +11,7 @@ import { Plugin } from "@opencode/plugin"
  * `wake` pages itself, so truncating here would break the paging contract.
  */
 
-const MEMO = `${process.env.HOME}/.local/bin/memory`
+const MEMO = `${homedir()}/.optmem/memo`
 const ACTION = "optmem"
 const TIMEOUT = 30_000
 
@@ -187,7 +188,9 @@ export default Plugin.define({
         },
 
         // Gives the tool its own permission action instead of borrowing one.
-        options: { codemode: true, permission: ACTION },
+        // Not codemode: codemode plugin tools historically failed to relay their
+        // result (see opencode issue #41949); a direct tool works reliably.
+        options: { permission: ACTION },
 
         async execute(input, context) {
           const args = input as Input

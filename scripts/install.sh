@@ -83,6 +83,8 @@ opencode.json:
 
   "permissions": [
     { "action": "sweep",  "resource": "*", "effect": "allow" },
-    { "action": "doctor", "resource": "*", "effect": "allow" }
+    { "action": "doctor", "resource": "*", "effect": "allow" },
+    { "action": "optmem", "resource": "*", "effect": "allow" },
+    { "action": "sh",     "resource": "*", "effect": "allow" }
   ]
 EOF
